@@ -55,3 +55,4 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+Project-Countdown.xcodeproj/project.xcworkspace/xcuserdata/*
