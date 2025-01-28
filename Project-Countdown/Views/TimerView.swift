@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TimerView: View {
     var body: some View {
-        HeaderView()
+        Text("This is the timer view")
     }
 }
 

@@ -10,10 +10,7 @@ import SwiftUI
 struct MainTimerScreen: View {
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            HeaderView()
             TimerView()
         }
         .padding()
