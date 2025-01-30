@@ -1,0 +1,58 @@
+# macOS System Files
+.DS_Store
+*.swp
+*.swo
+
+# Xcode
+DerivedData/
+*.xcworkspace
+*.xccheckout
+*.xcscmblueprint
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.lock
+
+# Git
+.git/
+
+# Ignore user-specific data
+*.xcuserdata/
+*.xcuserdatad/
+
+# Keep the project file but ignore temporary/intermediate files
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+
+
+# Archive files
+*.ipa
+*.dSYM.zip
+*.dSYM
+*.app
+
+# Environment files
+.env
+.env.local
+
+# Carthage
+Carthage/Checkouts
+Carthage/Build
+
+# Cocoapods
+Pods/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+Project-Countdown.xcodeproj/project.xcworkspace/xcuserdata/*
