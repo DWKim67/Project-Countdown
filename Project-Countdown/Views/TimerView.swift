@@ -1,121 +1,119 @@
-//
-//  TimerView.swift
-//  Project-Countdown
-//
-//  Created by Daniel Kim on 2025-01-23.
-//
-
 import SwiftUI
 
 struct TimerView: View {
-    @State private var totalTime: TimeInterval = 3600 // Total timer duration
-    @State private var remainingTime: TimeInterval = 3600 // Remaining time
+    @State private var deadline: Date = Date().addingTimeInterval(3600 * 24) // Default to 24 hours from now
     @State private var isRunning: Bool = false
-    @State private var currentTask: String = "Work"
-    
-    // Timer update logic
-    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
+    @State private var timeLeft: TimeInterval = 0
+    @State private var subGoals: [Date] = []
+    @State private var showModal: Bool = false
+
+    private var totalTime: TimeInterval {
+        deadline.timeIntervalSinceNow > 0 ? deadline.timeIntervalSinceNow : 0
+    }
+
     var body: some View {
-        VStack(spacing: 30) {
+        VStack {
             // Total Timer
-            Text(timeFormatted(remainingTime))
+            Text(timeString(from: totalTime))
                 .font(.largeTitle)
-                .fontWeight(.bold)
-                .foregroundColor(.white)
-            
-            // Sub-timer
-            VStack {
-                Text(currentTask)
-                    .font(.title2)
-                    .foregroundColor(.white)
-                Text(timeFormatted(remainingTime))
-                    .font(.body)
-                    .foregroundColor(.white.opacity(0.8))
+                .bold()
+
+            // Sub Timer
+            VStack(spacing: 8) {
+                Text("Task Name") // Placeholder for task name
+                    .font(.headline)
+                Text(timeString(from: totalTime / 2)) // Placeholder for sub-timer
+                    .font(.subheadline)
             }
-            
-            // Visual Timer (Arc with sub-goal markers)
+
+            // Visual Timer
             ZStack {
                 Circle()
-                    .stroke(Color.gray.opacity(0.2), lineWidth: 20) // Background Circle
-                
+                    .stroke(Color.gray.opacity(0.3), lineWidth: 10)
                 Circle()
-                    .trim(from: 0, to: progressPercentage())
-                    .stroke(Color.blue, style: StrokeStyle(lineWidth: 20, lineCap: .round))
-                    .rotationEffect(.degrees(-90)) // Rotate to start from top
-                    .animation(.easeInOut, value: remainingTime)
-                
-                // Sub-goal markers
-                ForEach(subGoalMarkers(), id: \.self) { percentage in
-                    Marker(position: percentage)
+                    .trim(from: 0, to: CGFloat(totalTime > 0 ? (timeLeft / totalTime) : 0))
+                    .stroke(isRunning ? Color.green : Color.red, lineWidth: 10)
+                    .rotationEffect(.degrees(-90))
+                    .animation(.linear(duration: 1), value: timeLeft)
+
+                ForEach(subGoals, id: \ .self) { goal in
+                    let percentage = CGFloat(deadline.timeIntervalSince(goal) / totalTime)
+                    Circle()
+                        .frame(width: 8, height: 8)
+                        .foregroundColor(.white)
+                        .offset(y: -100)
+                        .rotationEffect(.degrees(Double(-360 * percentage)))
                 }
             }
             .frame(width: 200, height: 200)
-            
+            .padding()
+
             // Start/Stop Button
-            Button(action: toggleTimer) {
+            Button(action: {
+                isRunning.toggle()
+                if isRunning {
+                    startTimer()
+                } else {
+                    stopTimer()
+                }
+            }) {
                 Text(isRunning ? "Stop" : "Start")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .frame(width: 120, height: 50)
-                    .background(isRunning ? Color.red : Color.green)
                     .foregroundColor(.white)
+                    .padding()
+                    .frame(width: 100)
+                    .background(isRunning ? Color.red : Color.green)
                     .cornerRadius(10)
             }
-        }
-        .padding()
-        .background(Color.black.edgesIgnoringSafeArea(.all))
-        .onReceive(timer) { _ in
-            if isRunning && remainingTime > 0 {
-                remainingTime -= 1
-            } else {
-                isRunning = false
+
+            // Modal Button
+            Button(action: {
+                showModal.toggle()
+            }) {
+                Image(systemName: "chevron.up")
+                    .resizable()
+                    .frame(width: 30, height: 20)
+                    .padding()
+            }
+            .sheet(isPresented: $showModal) {
+                VStack {
+                    Text("Modal Content") // Replace with actual content
+                        .font(.headline)
+                    Spacer()
+                }
+                .padding()
             }
         }
+        .onAppear {
+            timeLeft = totalTime
+        }
+        .onChange(of: deadline) { _ in
+            timeLeft = totalTime
+        }
     }
-    
-    // Function to format time into hr:min:sec
-    private func timeFormatted(_ time: TimeInterval) -> String {
+
+    private func timeString(from time: TimeInterval) -> String {
         let hours = Int(time) / 3600
         let minutes = (Int(time) % 3600) / 60
         let seconds = Int(time) % 60
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
-    
-    // Calculate progress percentage for the arc
-    private func progressPercentage() -> CGFloat {
-        return CGFloat(remainingTime / totalTime)
-    }
-    
-    // Generate sub-goal markers as percentages
-    private func subGoalMarkers() -> [CGFloat] {
-        // Example: 25%, 50%, 75%
-        return [0.25, 0.5, 0.75]
-    }
-    
-    // Start/Stop Timer
-    private func toggleTimer() {
-        isRunning.toggle()
-        if !isRunning {
-            remainingTime = totalTime // Reset if stopped
-        }
-    }
-}
 
-struct Marker: View {
-    var position: CGFloat // Position of the marker as a percentage of the circle
-    
-    var body: some View {
-        GeometryReader { geometry in
-            let radius = geometry.size.width / 2
-            let angle = position * 360.0
-            
-            Circle()
-                .fill(Color.green)
-                .frame(width: 10, height: 10)
-                .position(x: radius * CGFloat(cos(angle * .pi / 180)) + radius,
-                          y: radius * CGFloat(sin(angle * .pi / 180)) + radius)
+    private func startTimer() {
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+            guard isRunning else {
+                timer.invalidate()
+                return
+            }
+            timeLeft -= 1
+            if timeLeft <= 0 {
+                timer.invalidate()
+                isRunning = false
+            }
         }
+    }
+
+    private func stopTimer() {
+        isRunning = false
     }
 }
 
