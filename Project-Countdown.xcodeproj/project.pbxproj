@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C14227702D47A44D006329E0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C142276F2D47A44A006329E0 /* HeaderView.swift */; };
 		ED27DAA32D515ADA0038C744 /* WorkRestTimerCreationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED27DAA22D515ADA0038C744 /* WorkRestTimerCreationScreen.swift */; };
+		EDD0A1362D526F4200D77AED /* IntervalCreatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0A1352D526F4200D77AED /* IntervalCreatorView.swift */; };
 		EDD0A8C52D42E01900BF103B /* Project_CountdownApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0A8C42D42E01900BF103B /* Project_CountdownApp.swift */; };
 		EDD0A8C72D42E01900BF103B /* MainTimerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0A8C62D42E01900BF103B /* MainTimerScreen.swift */; };
 		EDD0A8C92D42E01B00BF103B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDD0A8C82D42E01B00BF103B /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		C142276F2D47A44A006329E0 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		ED27DAA22D515ADA0038C744 /* WorkRestTimerCreationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkRestTimerCreationScreen.swift; sourceTree = "<group>"; };
+		EDD0A1352D526F4200D77AED /* IntervalCreatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalCreatorView.swift; sourceTree = "<group>"; };
 		EDD0A8C12D42E01900BF103B /* Project-Countdown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project-Countdown.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDD0A8C42D42E01900BF103B /* Project_CountdownApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project_CountdownApp.swift; sourceTree = "<group>"; };
 		EDD0A8C62D42E01900BF103B /* MainTimerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTimerScreen.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			children = (
 				C142276F2D47A44A006329E0 /* HeaderView.swift */,
 				EDD0A8D72D42E0EC00BF103B /* TimerView.swift */,
+				EDD0A1352D526F4200D77AED /* IntervalCreatorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C14227702D47A44D006329E0 /* HeaderView.swift in Sources */,
+				EDD0A1362D526F4200D77AED /* IntervalCreatorView.swift in Sources */,
 				EDD0A8C72D42E01900BF103B /* MainTimerScreen.swift in Sources */,
 				EDD0A8C52D42E01900BF103B /* Project_CountdownApp.swift in Sources */,
 				EDD0A8D82D42E0EC00BF103B /* TimerView.swift in Sources */,
