@@ -13,7 +13,7 @@ struct IntervalCreatorView: View {
     @Binding var minuteLength: String
     @Binding var secondLength: String
     @Environment(\.colorScheme) var colorScheme
-    @State var isChecked: Bool = false
+    @State var selectedType: Bool = false
     
     var body: some View {
         VStack {
@@ -34,9 +34,14 @@ struct IntervalCreatorView: View {
                     .background(Color.secondary)
                     .foregroundStyle(colorScheme == .dark ? Color.black : Color.white)
             }
-//            Toggle(isOn: $isChecked) {
-//                Text("Test")
-//            }
+            List {
+                Picker("Work Type", selection: $selectedType) {
+                    Text("Work").tag("Work")
+                    Text("Break").tag("Break")
+                    Text("Custom").tag("Custom")
+                }
+            }
+            .frame(maxHeight: 300)
         }
     }
 }

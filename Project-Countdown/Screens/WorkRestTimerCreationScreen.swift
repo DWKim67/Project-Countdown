@@ -26,21 +26,31 @@ struct WorkRestTimerCreationScreen: View {
                         .frame(width: UIScreen.main.bounds.width/2)
                         .background(Color.secondary)
                         .foregroundStyle(colorScheme == .dark ? Color.black : Color.white)
-                    Button("Next", action: {
-                        selectedTab += 1
-                    })
-                    .buttonStyle(.bordered)
-                    .foregroundStyle(Color.white)
                 }
                 .tag(0)
                 
                 IntervalCreatorView(intervalName: $intervalName, minuteLength: $minuteLength, secondLength: $secondLength)
                 .tag(1)
             }
-            .tabViewStyle(.page)
+            .tabViewStyle(.page (indexDisplayMode: .never))
+            .frame(height: 500)
             
+            Button("Next", action: {
+                selectedTab = 1
+            })
+            .buttonStyle(.bordered)
+            .foregroundStyle(Color.white)
             
+            Spacer()
             
+            HStack {
+                ForEach(0..<3) { index in
+                    Circle()
+                        .frame(width: 8, height: 8)
+                        .foregroundStyle(selectedTab == index ? Color.white : Color.gray)
+                }
+            }
+            .padding(.bottom, 10)
         }
     }
 }
