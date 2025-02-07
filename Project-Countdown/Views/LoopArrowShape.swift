@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct LoopArrowShape: Shape {
+    var lengthMultiplier: CGFloat = 1
+    
     func path(in rect: CGRect) -> Path {
         var path = Path()
         let startingPoint = CGPoint(x: 10, y: 200)
+        let lengthenedPoint = CGPoint(x: 10 * lengthMultiplier, y: 200)
         let sizeMultiplier: CGFloat = 40
         
         path.move(to: startingPoint)
@@ -19,12 +22,15 @@ struct LoopArrowShape: Shape {
         path.move(to: CGPoint(x: startingPoint.x + (0.5 * sizeMultiplier), y: startingPoint.y))
         path.addArc(tangent1End: CGPoint(x: startingPoint.x + (0.5 * sizeMultiplier), y: startingPoint.y - (1 * sizeMultiplier)), tangent2End: CGPoint(x: startingPoint.x + (20 * sizeMultiplier), y: startingPoint.y - (1 * sizeMultiplier)), radius: (1 * sizeMultiplier))
         path.addLine(to: CGPoint(x: startingPoint.x + (0.5 * sizeMultiplier), y: startingPoint.y - (1 * sizeMultiplier)))
-        path.addArc(tangent1End: CGPoint(x: startingPoint.x + (7 * sizeMultiplier) , y: startingPoint.y - (1 * sizeMultiplier)), tangent2End: CGPoint(x: startingPoint.x + (7 * sizeMultiplier), y: startingPoint.y), radius: (1 * sizeMultiplier))
-        path.addLine(to: CGPoint(x: startingPoint.x + (6 * sizeMultiplier), y: startingPoint.y))
-        path.addArc(tangent1End: CGPoint(x: startingPoint.x + (5 * sizeMultiplier), y: startingPoint.y - (0.5 * sizeMultiplier)), tangent2End: CGPoint(x: startingPoint.x + (4.5 * sizeMultiplier), y: startingPoint.y - (0.5 * sizeMultiplier)), radius: (4 * sizeMultiplier))
+        
+        // New point
+        path.addArc(tangent1End: CGPoint(x: lengthenedPoint.x + (4 * sizeMultiplier) , y: startingPoint.y - (1 * sizeMultiplier)), tangent2End: CGPoint(x: lengthenedPoint.x + (4 * sizeMultiplier), y: startingPoint.y), radius: (1 * sizeMultiplier))
+        path.addLine(to: CGPoint(x: lengthenedPoint.x + (3.25 * sizeMultiplier), y: startingPoint.y))
+        path.addArc(tangent1End: CGPoint(x: lengthenedPoint.x + (3.0 * sizeMultiplier), y: startingPoint.y - (0.5 * sizeMultiplier)), tangent2End: CGPoint(x: lengthenedPoint.x + (2 * sizeMultiplier), y: startingPoint.y - (0.5 * sizeMultiplier)), radius: (1 * sizeMultiplier))
+        // Old point
         path.addLine(to: CGPoint(x: startingPoint.x + (3.5 * sizeMultiplier), y: startingPoint.y - (0.5 * sizeMultiplier)))
-        path.addLine(to: CGPoint(x: startingPoint.x + (2.5 * sizeMultiplier), y: startingPoint.y - (0.5 * sizeMultiplier)))
-        path.addArc(tangent1End: CGPoint(x: startingPoint.x + (1.5 * sizeMultiplier) , y: startingPoint.y), tangent2End: CGPoint(x: startingPoint.x + (1.5 * sizeMultiplier), y: startingPoint.y), radius: (1 * sizeMultiplier))
+        path.addLine(to: CGPoint(x: startingPoint.x + (2.0 * sizeMultiplier), y: startingPoint.y - (0.5 * sizeMultiplier)))
+        path.addArc(tangent1End: CGPoint(x: startingPoint.x + (1.75 * sizeMultiplier) , y: startingPoint.y - (0.5 * sizeMultiplier)), tangent2End: CGPoint(x: startingPoint.x + (1.5 * sizeMultiplier), y: startingPoint.y), radius: (1 * sizeMultiplier))
         return path
     }
     

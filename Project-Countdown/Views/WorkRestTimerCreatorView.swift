@@ -10,6 +10,9 @@ import SwiftUI
 struct WorkRestTimerCreateView: View {
     var body: some View {
         VStack {
+            LoopArrowShape(lengthMultiplier: 15)
+                .frame(height:150)
+                .scaleEffect(0.5)
             HStack {
                 Text("Work")
                     .padding(.horizontal, 35)
