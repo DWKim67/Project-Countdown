@@ -12,8 +12,8 @@ struct LoopArrowShape: Shape {
     
     func path(in rect: CGRect) -> Path {
         var path = Path()
-        let startingPoint = CGPoint(x: 10, y: 200)
-        let lengthenedPoint = CGPoint(x: 10 * lengthMultiplier, y: 200)
+        let startingPoint = CGPoint(x: 0, y: 40)
+        let lengthenedPoint = CGPoint(x: 0 + (10 * lengthMultiplier), y: 40)
         let sizeMultiplier: CGFloat = 40
         
         path.move(to: startingPoint)

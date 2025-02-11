@@ -35,9 +35,15 @@ struct WorkRestTimerCreationScreen: View {
             .tabViewStyle(.page (indexDisplayMode: .never))
             .frame(height: 500)
             
-            Button("Next", action: {
-                selectedTab = 1
-            })
+            
+            VStack {
+                Button("Back", action: {
+                    if selectedTab > 0 { selectedTab -= 1 }
+                })
+                Button("Next", action: {
+                    if selectedTab < 2 { selectedTab += 1 }
+                })
+            }
             .buttonStyle(.bordered)
             .foregroundStyle(Color.white)
             

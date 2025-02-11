@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C14227702D47A44D006329E0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C142276F2D47A44A006329E0 /* HeaderView.swift */; };
 		ED27DAA32D515ADA0038C744 /* WorkRestTimerCreationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED27DAA22D515ADA0038C744 /* WorkRestTimerCreationScreen.swift */; };
+		ED775FAE2D566B4E00DDF811 /* LoopArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED775FAD2D566B4E00DDF811 /* LoopArrowView.swift */; };
 		EDBD160D2D53DE0F00C66E41 /* LoopArrowShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBD160C2D53DE0F00C66E41 /* LoopArrowShape.swift */; };
 		EDD0A1362D526F4200D77AED /* IntervalCreatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0A1352D526F4200D77AED /* IntervalCreatorView.swift */; };
 		EDD0A8C52D42E01900BF103B /* Project_CountdownApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0A8C42D42E01900BF103B /* Project_CountdownApp.swift */; };
@@ -18,11 +19,16 @@
 		EDD0A8D62D42E0D800BF103B /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0A8D52D42E0D800BF103B /* Project.swift */; };
 		EDD0A8D82D42E0EC00BF103B /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0A8D72D42E0EC00BF103B /* TimerView.swift */; };
 		EDE173622D53C30E00FC3CA3 /* WorkRestTimerCreatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE173612D53C30E00FC3CA3 /* WorkRestTimerCreatorView.swift */; };
+		EDE79E8D2D5A6793005DFD75 /* WorkRestTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE79E8C2D5A6793005DFD75 /* WorkRestTimer.swift */; };
+		EDE79E8F2D5A6DDC005DFD75 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE79E8E2D5A6DDC005DFD75 /* TimeInterval.swift */; };
+		EDE79E912D5A70E2005DFD75 /* TimeIntervalBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE79E902D5A70E2005DFD75 /* TimeIntervalBlockView.swift */; };
+		EDE79E942D5A7B8E005DFD75 /* WorkRestTimerCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE79E932D5A7B8E005DFD75 /* WorkRestTimerCreator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C142276F2D47A44A006329E0 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		ED27DAA22D515ADA0038C744 /* WorkRestTimerCreationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkRestTimerCreationScreen.swift; sourceTree = "<group>"; };
+		ED775FAD2D566B4E00DDF811 /* LoopArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopArrowView.swift; sourceTree = "<group>"; };
 		EDBD160C2D53DE0F00C66E41 /* LoopArrowShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopArrowShape.swift; sourceTree = "<group>"; };
 		EDD0A1352D526F4200D77AED /* IntervalCreatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalCreatorView.swift; sourceTree = "<group>"; };
 		EDD0A8C12D42E01900BF103B /* Project-Countdown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project-Countdown.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -33,6 +39,10 @@
 		EDD0A8D52D42E0D800BF103B /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		EDD0A8D72D42E0EC00BF103B /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		EDE173612D53C30E00FC3CA3 /* WorkRestTimerCreatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkRestTimerCreatorView.swift; sourceTree = "<group>"; };
+		EDE79E8C2D5A6793005DFD75 /* WorkRestTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkRestTimer.swift; sourceTree = "<group>"; };
+		EDE79E8E2D5A6DDC005DFD75 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
+		EDE79E902D5A70E2005DFD75 /* TimeIntervalBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalBlockView.swift; sourceTree = "<group>"; };
+		EDE79E932D5A7B8E005DFD75 /* WorkRestTimerCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkRestTimerCreator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +75,7 @@
 		EDD0A8C32D42E01900BF103B /* Project-Countdown */ = {
 			isa = PBXGroup;
 			children = (
+				EDE79E922D5A789C005DFD75 /* ViewModel */,
 				EDD0A8D42D42E0C900BF103B /* Models */,
 				EDD0A8D32D42E0C200BF103B /* Views */,
 				EDD0A8D22D42E0A400BF103B /* Screens */,
@@ -100,6 +111,8 @@
 				EDD0A1352D526F4200D77AED /* IntervalCreatorView.swift */,
 				EDE173612D53C30E00FC3CA3 /* WorkRestTimerCreatorView.swift */,
 				EDBD160C2D53DE0F00C66E41 /* LoopArrowShape.swift */,
+				ED775FAD2D566B4E00DDF811 /* LoopArrowView.swift */,
+				EDE79E902D5A70E2005DFD75 /* TimeIntervalBlockView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -108,8 +121,18 @@
 			isa = PBXGroup;
 			children = (
 				EDD0A8D52D42E0D800BF103B /* Project.swift */,
+				EDE79E8C2D5A6793005DFD75 /* WorkRestTimer.swift */,
+				EDE79E8E2D5A6DDC005DFD75 /* TimeInterval.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		EDE79E922D5A789C005DFD75 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EDE79E932D5A7B8E005DFD75 /* WorkRestTimerCreator.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,8 +205,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDE79E912D5A70E2005DFD75 /* TimeIntervalBlockView.swift in Sources */,
 				C14227702D47A44D006329E0 /* HeaderView.swift in Sources */,
+				EDE79E8F2D5A6DDC005DFD75 /* TimeInterval.swift in Sources */,
+				EDE79E942D5A7B8E005DFD75 /* WorkRestTimerCreator.swift in Sources */,
 				EDE173622D53C30E00FC3CA3 /* WorkRestTimerCreatorView.swift in Sources */,
+				ED775FAE2D566B4E00DDF811 /* LoopArrowView.swift in Sources */,
 				EDD0A1362D526F4200D77AED /* IntervalCreatorView.swift in Sources */,
 				EDD0A8C72D42E01900BF103B /* MainTimerScreen.swift in Sources */,
 				EDD0A8C52D42E01900BF103B /* Project_CountdownApp.swift in Sources */,
@@ -191,6 +218,7 @@
 				EDD0A8D62D42E0D800BF103B /* Project.swift in Sources */,
 				EDBD160D2D53DE0F00C66E41 /* LoopArrowShape.swift in Sources */,
 				ED27DAA32D515ADA0038C744 /* WorkRestTimerCreationScreen.swift in Sources */,
+				EDE79E8D2D5A6793005DFD75 /* WorkRestTimer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

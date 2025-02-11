@@ -8,34 +8,85 @@
 import SwiftUI
 
 struct WorkRestTimerCreateView: View {
+    
+    private let arrowScale: CGFloat = 0.5
+    @StateObject var viewModel: WorkRestTimerCreator
+    
+    private func handleTimerDrop(_ intervalNames: [String]) -> Bool {
+        if let name = intervalNames.first {
+            guard let intervalToBeAdded = (viewModel.templateIntervals.first{ $0.name == name}) else {
+                return false
+            }
+            viewModel.addInterval(with: intervalToBeAdded)
+            return true
+        } else {
+            return false
+        }
+    }
+    
     var body: some View {
         VStack {
-            LoopArrowShape(lengthMultiplier: 15)
-                .frame(height:150)
-                .scaleEffect(0.5)
-            HStack {
-                Text("Work")
-                    .padding(.horizontal, 35)
-                    .padding(.vertical, 2)
-                    .background {
-                        Color.red
+            ScrollView {
+                VStack {
+                    ForEach(viewModel.workRestTimerInterval.intervals, id: \.self) { interval in
+                        TimeIntervalBlockView(timerInterval: interval)
                     }
-                    .cornerRadius(2)
-                Text("Break")
-                    .padding(.horizontal, 5)
-                    .padding(.vertical, 2)
-                    .background {
-                        Color.blue
-                    }
-                    .cornerRadius(2)
+//                    RoundedRectangle(cornerRadius: 10)
+//                        .fill(.red)
+//                        .frame(width: 80, height: 100)
+//                        .overlay {
+//                            Text("Work")
+//                        }
+//                    RoundedRectangle(cornerRadius: 10)
+//                        .fill(.blue)
+//                        .frame(width: 80, height: 50)
+//                        .overlay {
+//                            Text("Brewerwerewrwrwererwak")
+//                                .padding(2)
+//                        }
+//                    RoundedRectangle(cornerRadius: 10)
+//                        .fill(.red)
+//                        .frame(width: 80, height: 100)
+//                        .overlay {
+//                            Text("Work")
+//                        }
+//                    RoundedRectangle(cornerRadius: 10)
+//                        .fill(.red)
+//                        .frame(width: 80, height: 100)
+//                        .overlay {
+//                            Text("Work")
+//                        }
+//                    RoundedRectangle(cornerRadius: 10)
+//                        .fill(.red)
+//                        .frame(width: 80, height: 100)
+//                        .overlay {
+//                            Text("Work")
+//                        }
+//                    RoundedRectangle(cornerRadius: 10)
+//                        .fill(.red)
+//                        .frame(width: 80, height: 100)
+//                        .overlay {
+//                            Text("Work")
+//                        }
+                }.frame(width: UIScreen.main.bounds.width * 0.7, height: UIScreen.main.bounds.height * 0.7)
+            }
+            .dropDestination(for: String.self) { intervals,location in
+                return handleTimerDrop(intervals)
+            }
+            .frame(width: UIScreen.main.bounds.width * 0.7, height: UIScreen.main.bounds.height * 0.7)
+                .border(Color.blue, width: 2)
+                
+            Spacer()
+            HStack (alignment: .bottom) {
+                ForEach(Array(viewModel.templateIntervals), id: \.self) { interval in
+                    TimeIntervalBlockView(timerInterval: interval)
+                }
             }
         }
-        
-        
         
     }
 }
 
 #Preview {
-    WorkRestTimerCreateView()
+    WorkRestTimerCreateView(viewModel: WorkRestTimerCreator(nameOfTimer: "Test"))
 }

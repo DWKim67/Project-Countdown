@@ -11,7 +11,7 @@ import SwiftUI
 struct Project_CountdownApp: App {
     var body: some Scene {
         WindowGroup {
-            MainTimerScreen()
+            WorkRestTimerCreateView(viewModel: WorkRestTimerCreator(nameOfTimer: "Test"))
         }
     }
 }
