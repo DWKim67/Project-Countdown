@@ -9,12 +9,11 @@ import SwiftUI
 
 struct WorkRestTimerCreationScreen: View {
     
-    @State private var timerName: String = ""
-    @State private var intervalName: String = ""
-    @State private var minuteLength: String = ""
-    @State private var secondLength: String = ""
+    @State private var workRestTimerName: String = ""
     @State private var selectedTab = 0
+    @State private var reloadID = UUID()
     @Environment(\.colorScheme) var colorScheme
+    @StateObject var viewModel: WorkRestTimerCreator
     
     var body: some View {
         VStack {
@@ -22,26 +21,34 @@ struct WorkRestTimerCreationScreen: View {
                 VStack {
                     Text("Timer Name")
                         .font(.largeTitle)
-                    TextField("e.g. Pomodoro", text: $timerName)
-                        .frame(width: UIScreen.main.bounds.width/2)
-                        .background(Color.secondary)
-                        .foregroundStyle(colorScheme == .dark ? Color.black : Color.white)
+                    PCTextField(textInput: $workRestTimerName, textExample: "e.g. Pomodoro", textfieldSize: .large)
                 }
                 .tag(0)
                 
-                IntervalCreatorView(intervalName: $intervalName, minuteLength: $minuteLength, secondLength: $secondLength)
-                .tag(1)
+                IntervalCreatorView(reloadID: $reloadID)
+                    .tag(1)
+                
+                WorkRestTimerCreatorView()
+                    .id(reloadID)
+                    .tag(2)
             }
             .tabViewStyle(.page (indexDisplayMode: .never))
-            .frame(height: 500)
+            .frame(height: UIScreen.main.bounds.height * 0.7)
             
+            Spacer()
             
-            VStack {
+            HStack {
                 Button("Back", action: {
                     if selectedTab > 0 { selectedTab -= 1 }
                 })
                 Button("Next", action: {
-                    if selectedTab < 2 { selectedTab += 1 }
+                    
+                    if selectedTab < 2 {
+                        if selectedTab == 0 {
+                            viewModel.updateWorkRestTimerName(with: workRestTimerName)
+                        }
+                        selectedTab += 1
+                    }
                 })
             }
             .buttonStyle(.bordered)
@@ -58,9 +65,10 @@ struct WorkRestTimerCreationScreen: View {
             }
             .padding(.bottom, 10)
         }
+        .environmentObject(viewModel)
     }
 }
 
 #Preview {
-    WorkRestTimerCreationScreen()
+    WorkRestTimerCreationScreen(viewModel: WorkRestTimerCreator(nameOfTimer: "Test"))
 }

@@ -21,6 +21,13 @@ struct TimerInterval: Hashable, Identifiable {
         self.currentSecondsLength = secondsLength
     }
     
+    init(name: String, projectTimeMultipler: Double, minutesLength: Int, secondsLength: Int) {
+        self.name = name
+        self.projectTimeMultipler = projectTimeMultipler
+        self.originalSecondsLength = secondsLength + (minutesLength * 60)
+        self.currentSecondsLength = secondsLength + (minutesLength * 60)
+    }
+    
     init(name: String, projectTimeMultipler: Double, minutesLength: Int) {
         self.name = name
         self.projectTimeMultipler = projectTimeMultipler

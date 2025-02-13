@@ -13,7 +13,7 @@ class WorkRestTimerCreator: ObservableObject {
     
     init(nameOfTimer: String) {
         self.workRestTimerInterval = WorkRestTimer(name: nameOfTimer)
-        createTemplateIntervalsForTesting()
+//        createTemplateIntervalsForTesting()
     }
     
     func createTemplateIntervalsForTesting() {
@@ -22,9 +22,18 @@ class WorkRestTimerCreator: ObservableObject {
         templateIntervals.insert(TimerInterval(name: "Long Break", projectTimeMultipler: 0.0, minutesLength: 20))
     }
     
+    func addTemplateInterval(with interval: TimerInterval) {
+        templateIntervals.insert(interval)
+        objectWillChange.send()
+    }
+    
     func addInterval(with interval: TimerInterval) {
         workRestTimerInterval.addToIntervals(with: interval)
         objectWillChange.send()
+    }
+    
+    func updateWorkRestTimerName(with name: String) {
+        workRestTimerInterval.editName(to: name)
     }
     
 }
