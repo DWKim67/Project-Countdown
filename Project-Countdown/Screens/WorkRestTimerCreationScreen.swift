@@ -37,33 +37,7 @@ struct WorkRestTimerCreationScreen: View {
             
             Spacer()
             
-            HStack {
-                Button("Back", action: {
-                    if selectedTab > 0 { selectedTab -= 1 }
-                })
-                Button("Next", action: {
-                    
-                    if selectedTab < 2 {
-                        if selectedTab == 0 {
-                            viewModel.updateWorkRestTimerName(with: workRestTimerName)
-                        }
-                        selectedTab += 1
-                    }
-                })
-            }
-            .buttonStyle(.bordered)
-            .foregroundStyle(Color.white)
-            
-            Spacer()
-            
-            HStack {
-                ForEach(0..<3) { index in
-                    Circle()
-                        .frame(width: 8, height: 8)
-                        .foregroundStyle(selectedTab == index ? Color.white : Color.gray)
-                }
-            }
-            .padding(.bottom, 10)
+            WorkRestTimerNavigationSection(selectedTab: $selectedTab, workRestTimerName: workRestTimerName)
         }
         .environmentObject(viewModel)
     }
@@ -71,4 +45,40 @@ struct WorkRestTimerCreationScreen: View {
 
 #Preview {
     WorkRestTimerCreationScreen(viewModel: WorkRestTimerCreator(nameOfTimer: "Test"))
+}
+
+fileprivate struct WorkRestTimerNavigationSection: View {
+    @EnvironmentObject var viewModel: WorkRestTimerCreator
+    @Binding var selectedTab: Int
+    var workRestTimerName: String
+    
+    var body: some View {
+        HStack {
+            Button("Back", action: {
+                if selectedTab > 0 { selectedTab -= 1 }
+            })
+            Button("Next", action: {
+                
+                if selectedTab < 2 {
+                    if selectedTab == 0 {
+                        viewModel.updateWorkRestTimerName(with: workRestTimerName)
+                    }
+                    selectedTab += 1
+                }
+            })
+        }
+        .buttonStyle(.bordered)
+        .foregroundStyle(Color.white)
+        
+        Spacer()
+        
+        HStack {
+            ForEach(0..<3) { index in
+                Circle()
+                    .frame(width: 8, height: 8)
+                    .foregroundStyle(selectedTab == index ? Color.white : Color.gray)
+            }
+        }
+        .padding(.bottom, 10)
+    }
 }

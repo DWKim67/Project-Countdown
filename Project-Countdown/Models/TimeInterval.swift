@@ -6,8 +6,15 @@
 //
 
 import Foundation
+import CoreTransferable
+import UniformTypeIdentifiers
 
-struct TimerInterval: Hashable, Identifiable {
+struct TimerInterval: Hashable, Identifiable, Codable, Transferable {
+    
+    static var transferRepresentation: some TransferRepresentation {
+        CodableRepresentation(contentType: .timerInterval)
+    }
+    
     var id = UUID()
     var name: String
     var projectTimeMultipler: Double
@@ -34,4 +41,14 @@ struct TimerInterval: Hashable, Identifiable {
         self.originalSecondsLength = minutesLength * 60
         self.currentSecondsLength = minutesLength * 60
     }
+    
+    static func createCopy(of interval: TimerInterval) -> TimerInterval {
+        TimerInterval(name: interval.name, projectTimeMultipler: interval.projectTimeMultipler, secondsLength: interval.originalSecondsLength)
+    }
+}
+
+extension UTType {
+    // exportedAs is declared in reverse domain name notation using a domain that you (or your employer) owns
+    // this ensures there is only ever one owner to this kind of data
+    static let timerInterval = UTType(exportedAs: "com.example.timerInterval")
 }
